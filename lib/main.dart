@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningfoundation/LearnContainerView.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter自我总结'),
+      home: MyHomePage(title: 'Flutter自我入门总结'),
     );
   }
 }
@@ -39,6 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: 20,),
           GestureDetector(
             child: _button('Container'),
+            behavior: HitTestBehavior.opaque,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnContainerView()),);
+            },
           )
         ],
       ),
