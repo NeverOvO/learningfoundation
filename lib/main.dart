@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learningfoundation/LearnContainerView.dart';
+import 'package:learningfoundation/LearnRowAndColumnView.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,6 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
             behavior: HitTestBehavior.opaque,
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => LearnContainerView()),);
+            },
+          ),
+          SizedBox(height: 20,),
+          GestureDetector(
+            child: _button('Row&Column'),
+            behavior: HitTestBehavior.opaque,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnRowAndColumnView()),);
             },
           )
         ],
