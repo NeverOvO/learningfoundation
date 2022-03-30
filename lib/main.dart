@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:learningfoundation/LearnContainerView.dart';
+import 'package:learningfoundation/LearnGestureDetectorView.dart';
 import 'package:learningfoundation/LearnRowAndColumnView.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,7 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => LearnRowAndColumnView()),);
             },
-          )
+          ),
+          SizedBox(height: 20,),
+          GestureDetector(
+            child: _button('GestureDetector'),
+            behavior: HitTestBehavior.opaque,
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnGestureDetectorView()),);
+            },
+          ),
         ],
       ),
     );
