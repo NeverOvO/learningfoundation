@@ -102,6 +102,68 @@ class _LearnGestureDetectorViewState extends State<LearnGestureDetectorView> {
           onSecondaryLongPress: (){
             print("onSecondaryLongPress");
           },
+
+          onVerticalDragDown: (e){
+            print(e.localPosition);
+            print("onVerticalDragDown");
+          },
+          onVerticalDragStart: (e){
+            print("onVerticalDragStart");
+          },
+          onVerticalDragUpdate: (e){
+            print("onVerticalDragUpdate");
+          },
+          onVerticalDragEnd: (e){
+            print("onVerticalDragEnd");
+          },
+          onVerticalDragCancel: (){
+            print("onVerticalDragCancel");
+          },
+
+          onHorizontalDragDown: (e){
+            print("onHorizontalDragDown");
+          },
+          onHorizontalDragStart: (e){
+            print("onHorizontalDragStart");
+          },
+          onHorizontalDragUpdate: (e){
+            print("onHorizontalDragStart");
+          },
+          onHorizontalDragEnd: (e){
+            print("onHorizontalDragEnd");
+          },
+          onHorizontalDragCancel: (){
+
+          },
+
+          onPanDown: (e){
+            print("onPanDown");
+          },
+          onPanStart: (e){
+            print("onPanStart");
+          },
+          onPanUpdate: (e){
+            print("onPanUpdate");
+          },
+          onPanEnd: (e){
+            print("onPanEnd");
+          },
+          onPanCancel: (){
+
+          },
+
+          onForcePressPeak: (e){
+            print("onForcePressPeak");
+          },
+          onForcePressStart: (e){
+            print("onForcePressStart");
+          },
+          onForcePressUpdate: (e){
+            print("onForcePressUpdate");
+          },
+          onForcePressEnd: (e){
+            print("onForcePressEnd");
+          },
         )
       ),
     );
