@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:learningfoundation/LearnButtonView.dart';
 import 'package:learningfoundation/LearnContainerView.dart';
 import 'package:learningfoundation/LearnGestureDetectorView.dart';
 import 'package:learningfoundation/LearnRowAndColumnView.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:learningfoundation/picture_free_demo.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(fontSize: 14),
+        ),
       ),
       home: MyHomePage(title: 'Flutter自我入门总结'),
     );
@@ -40,42 +41,55 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: [
-          SizedBox(height: 20,),
-          GestureDetector(
-            child: _button('Container'),
-            behavior: HitTestBehavior.opaque,
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnContainerView()),);
-            },
+      body: Container(
+        padding: EdgeInsets.all(15),
+        child: GridView(
+
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, //每行三列
+            childAspectRatio: 3, //显示区域宽高相等
+            mainAxisSpacing: 15,
+            crossAxisSpacing: 15,
           ),
-          SizedBox(height: 20,),
-          GestureDetector(
-            child: _button('Row&Column'),
-            behavior: HitTestBehavior.opaque,
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnRowAndColumnView()),);
-            },
-          ),
-          SizedBox(height: 20,),
-          GestureDetector(
-            child: _button('GestureDetector'),
-            behavior: HitTestBehavior.opaque,
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnGestureDetectorView()),);
-            },
-          ),
-          SizedBox(height: 20,),
-          GestureDetector(
-            child: _button('Button系列'),
-            behavior: HitTestBehavior.opaque,
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LearnButtonView()),);
-            },
-          ),
-        ],
-      ),
+          children: [
+            GestureDetector(
+              child: _button('Container'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LearnContainerView()),);
+              },
+            ),
+            GestureDetector(
+              child: _button('Row&Column'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LearnRowAndColumnView()),);
+              },
+            ),
+            GestureDetector(
+              child: _button('GestureDetector'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LearnGestureDetectorView()),);
+              },
+            ),
+            GestureDetector(
+              child: _button('Button系列'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LearnButtonView()),);
+              },
+            ),
+            GestureDetector(
+              child: _button('图片自由Demo'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PictureFreePage()),);
+              },
+            ),
+          ],
+        ),
+      )
     );
   }
 
@@ -88,9 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
         boxShadow: [BoxShadow(blurRadius: 5, spreadRadius: 1, color: Colors.grey, offset:Offset(5,5)),],
       ),
       alignment: Alignment.center,
-      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-      margin: EdgeInsets.fromLTRB(200, 1, 200, 1),
-      child: Text(title,style: TextStyle(fontSize: 13,color: Colors.white),),
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      // margin: EdgeInsets.fromLTRB(200, 1, 200, 1),
+      child: Text(title,style: TextStyle(fontSize: 12,color: Colors.white),),
     );
   }
 }
