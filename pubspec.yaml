@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   url_launcher: ^6.1.7
   flutter_email_sender: ^5.2.0
+  image: ^3.2.2
 
 dev_dependencies:
   flutter_test:
