@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           titleTextStyle: TextStyle(fontSize: 14),
         ),
       ),
-      home: MyHomePage(title: 'Flutter自我入门总结'),
+      home: MyHomePage(title: 'Flutter练习册'),
     );
   }
 }
