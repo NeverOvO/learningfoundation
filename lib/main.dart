@@ -3,6 +3,7 @@ import 'package:learningfoundation/LearnButtonView.dart';
 import 'package:learningfoundation/LearnContainerView.dart';
 import 'package:learningfoundation/LearnGestureDetectorView.dart';
 import 'package:learningfoundation/LearnRowAndColumnView.dart';
+import 'package:learningfoundation/filing_page.dart';
 import 'package:learningfoundation/picture_free_demo.dart';
 
 void main() {
@@ -85,6 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
               behavior: HitTestBehavior.opaque,
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => PictureFreePage()),);
+              },
+            ),
+            GestureDetector(
+              child: _button('文件归档Demo'),
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => FillingPage()),);
               },
             ),
           ],
