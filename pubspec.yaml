@@ -34,6 +34,7 @@ dependencies:
   path_provider: ^2.0.11
   file_picker: ^5.2.2
   date_format: ^2.0.7
+  mime: ^1.0.2 #判断文件类型
 
 dev_dependencies:
   flutter_test:

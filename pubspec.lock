@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: archive
-      sha256: "76d919e063a09d19d61f99463a20dba1c1e8d0bc3a5eba91bac2853fac095373"
+      sha256: ed7cc591a948744994714375caf9a2ce89e1d82e8243997c8a2994d57181c212
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.3.4"
+    version: "3.3.5"
   async:
     dependency: transitive
     description:
@@ -200,6 +200,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0"
+  mime:
+    dependency: "direct main"
+    description:
+      name: mime
+      sha256: dab22e92b41aa1255ea90ddc4bc2feaf35544fd0728e209638cad041a6e3928a
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   path:
     dependency: transitive
     description:
@@ -441,10 +449,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: d13ac5deea7327f027b3b97ee19ee210f68256ecf3f1a304bcfb992ee947637c
+      sha256: ca121dbbadb3e43b449053feab0cdf3f2bff93b107cacf0290e3d29f717374b6
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   xdg_directories:
     dependency: transitive
     description:
