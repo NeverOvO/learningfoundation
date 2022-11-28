@@ -83,6 +83,7 @@ class _PictureFreePageState extends State<PictureFreePage> {
                   childAspectRatio: 1, //显示区域宽高相等
                   mainAxisSpacing: 0.5,
                   crossAxisSpacing: 0.5,
+
                 ),
                 itemCount: output!.length,
                 itemBuilder: (context,index){
