@@ -152,6 +152,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.13.5"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.0.2"
   image:
     dependency: "direct main"
     description:
@@ -280,6 +296,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.1.0"
+  pixel_color_image:
+    dependency: "direct main"
+    description:
+      name: pixel_color_image
+      sha256: "67124ca35cc80097dd631b29537af8366cdeec4888a388903ff95a1306a3429f"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.2"
   platform:
     dependency: transitive
     description:

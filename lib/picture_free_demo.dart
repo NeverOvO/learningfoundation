@@ -1,6 +1,8 @@
+
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as imgLib;
 import 'package:flutter/material.dart';
+
 
 class PictureFreePage extends StatefulWidget {
   final Map? arguments;
@@ -17,28 +19,67 @@ class _PictureFreePageState extends State<PictureFreePage> {
   List<imgLib.Image>? parts = [];//import 'package:image/image.dart' as imgLib;
   List<Image>? output = <Image>[];
 
+  int cross = 8;
+
   @override
   void initState() {
     super.initState();
   }
 
   void loadInfo() async{
-    print("1");
+    //按最大公约数来分割
     Uint8List bytes = (await NetworkAssetBundle(Uri.parse(url)).load(url)).buffer.asUint8List();
-    // print(bytes);
 
     imgLib.Image? image2 = imgLib.decodeImage(bytes);
     int x = 0;
     int y = 0;
 
+
+
+
+    int gcd = image2!.width.gcd(image2.height);
+    cross = image2.width ~/ gcd;
+
     parts!.clear();
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 8; j++) {
-        parts!.add(imgLib.copyCrop(image2!, x, y, 288, 288));
-        x += 288;
+    for (int i = 0; i < image2.height / gcd; i++) {
+      for (int j = 0; j < image2.width / gcd; j++) {
+        parts!.add(imgLib.copyCrop(image2, x, y, gcd, gcd));
+        x += gcd;
       }
       x = 0;
-      y += 288;
+      y += gcd;
+    }
+
+    output!.clear();
+    for (var img in parts!) {
+      output!.add(Image.memory(Uint8List.fromList(imgLib.encodePng(img))));
+
+    }
+
+    setState(() {});
+  }
+
+  void loadInfo1() async{
+    //按50宽度来分割
+    Uint8List bytes = (await NetworkAssetBundle(Uri.parse(url)).load(url)).buffer.asUint8List();
+    imgLib.Image? image2 = imgLib.decodeImage(bytes);
+    int x = 0;
+    int y = 0;
+
+
+    int gcd = 100;
+    cross = image2!.width ~/ gcd;
+
+    print(_abgrToArgb(image2.getPixelSafe(0,0)));
+
+    parts!.clear();
+    for (int i = 0; i < image2.height ~/ gcd; i++) {
+      for (int j = 0; j < cross; j++) {
+        parts!.add(imgLib.copyCrop(image2, x, y, gcd, gcd));
+        x += gcd;
+      }
+      x = 0;
+      y += gcd;
     }
 
     output!.clear();
@@ -46,12 +87,17 @@ class _PictureFreePageState extends State<PictureFreePage> {
       output!.add(Image.memory(Uint8List.fromList(imgLib.encodePng(img))));
     }
 
-    setState(() {
-
-    });
+    setState(() {});
   }
 
 
+  int _abgrToArgb(int oldValue) {
+    int newValue = oldValue;
+    newValue = newValue & 0xFF00FF00; //open new space to insert the bits
+    newValue = ((oldValue & 0xFF) << 16) | newValue; // change BB
+    newValue = ((oldValue & 0x00FF0000) >> 16) | newValue; // change RR
+    return newValue;
+  }
 
 
 
@@ -59,6 +105,7 @@ class _PictureFreePageState extends State<PictureFreePage> {
   void dispose() {
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +126,7 @@ class _PictureFreePageState extends State<PictureFreePage> {
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 8,
+                  crossAxisCount: cross,
                   childAspectRatio: 1, //显示区域宽高相等
                   mainAxisSpacing: 0.5,
                   crossAxisSpacing: 0.5,
@@ -98,7 +145,18 @@ class _PictureFreePageState extends State<PictureFreePage> {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.all(20),
-                  child: Text("1:按宫格切割测试====>"),
+                  child: Text("1:按最大公约数切割测试====>"),
+                ),
+              ),
+              GestureDetector(
+                onTap: () async{
+                  loadInfo1();
+                },
+                behavior: HitTestBehavior.opaque,
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(20),
+                  child: Text("2:按50宽度切割测试====>"),
                 ),
               ),
             ],
