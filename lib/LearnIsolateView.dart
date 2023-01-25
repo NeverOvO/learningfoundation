@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LearnIsolateView extends StatefulWidget {
   final Map? arguments;
@@ -205,7 +206,7 @@ class _LearnIsolateViewState extends State<LearnIsolateView> {
     Isolate? newIsolate = await Isolate.spawn(doWork2, port1);
 
     SendPort? port2;
-    rp1.listen((message) {
+    rp1.listen((message) async {
       print("rp1 收到消息: $message"); //2.  4.  7.rp1收到消息
       if (message[0] == 0) { // 对接完成后可以进行一次操作
         port2 = message[1]; //对接
@@ -229,7 +230,7 @@ class _LearnIsolateViewState extends State<LearnIsolateView> {
     ReceivePort rp2 = new ReceivePort();
     SendPort port2 = rp2.sendPort;
     port1.send([0, port2]);
-    rp2.listen((message) {
+    rp2.listen((message) async {
       print("rp2 收到消息: $message");
       if(message[0] == 1){ // 对接完成后进行操作
         Isolate.exit(port1, [1,summ(message[1])]);
