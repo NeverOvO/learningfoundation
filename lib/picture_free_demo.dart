@@ -1,4 +1,8 @@
 
+import 'dart:io';
+import 'dart:isolate';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as imgLib;
 import 'package:flutter/material.dart';
@@ -59,15 +63,14 @@ class _PictureFreePageState extends State<PictureFreePage> {
     setState(() {});
   }
 
-  void loadInfo1() async{
+  void loadInfo1(int num) async{
     //按50宽度来分割
     Uint8List bytes = (await NetworkAssetBundle(Uri.parse(url)).load(url)).buffer.asUint8List();
     imgLib.Image? image2 = imgLib.decodeImage(bytes);
     int x = 0;
     int y = 0;
 
-
-    int gcd = 100;
+    int gcd = 50;
     cross = image2!.width ~/ gcd;
 
     print(_abgrToArgb(image2.getPixelSafe(0,0)));
@@ -98,7 +101,6 @@ class _PictureFreePageState extends State<PictureFreePage> {
     newValue = ((oldValue & 0x00FF0000) >> 16) | newValue; // change RR
     return newValue;
   }
-
 
 
   @override
@@ -150,7 +152,7 @@ class _PictureFreePageState extends State<PictureFreePage> {
               ),
               GestureDetector(
                 onTap: () async{
-                  loadInfo1();
+                  // loadInfo1();
                 },
                 behavior: HitTestBehavior.opaque,
                 child: Container(
@@ -159,6 +161,7 @@ class _PictureFreePageState extends State<PictureFreePage> {
                   child: Text("2:按50宽度切割测试====>"),
                 ),
               ),
+
             ],
           ),
         ),
